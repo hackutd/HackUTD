@@ -3,31 +3,34 @@
     android:layout_height="match_parent"
     tools:context=".SplashScreen">
 
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/background"
-        android:src="@drawable/background"
+        android:src="@drawable/background2"
         android:scaleType="fitXY"
-        android:gravity="center"
-        />
+        android:gravity="center"/>
+
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/hack_utd_logo"
-        android:src="@drawable/logo"
-        android:layout_marginTop="50dp"
-        android:layout_alignParentTop="true"
+        android:id="@+id/hack_utd_text"
+        android:src="@drawable/hackutdtext"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_below="@+id/hack_utd_logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/hack_utd_logo"
+        android:src="@drawable/logo"
         android:layout_centerHorizontal="true"
-        android:scaleXY=".75"/>
+        android:layout_above="@+id/hack_utd_text"
+        />
+
+
 
 </RelativeLayout>
 
