@@ -61,8 +61,16 @@
             android:ems="10"
             android:id="@+id/email"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:hint="Email" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/emailError"
+            android:text="You must enter a valid email"
+            android:textColor="#f44336"
+            android:visibility="invisible" />
 
         <EditText
             android:layout_width="match_parent"
@@ -71,8 +79,16 @@
             android:ems="10"
             android:id="@+id/password"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="15dp"
             android:hint="Password" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You must enter a password"
+            android:id="@+id/passwordError"
+            android:textColor="#f44336"
+            android:visibility="invisible" />
 
         <Button
             android:layout_width="wrap_content"

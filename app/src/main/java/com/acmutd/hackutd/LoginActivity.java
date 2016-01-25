@@ -3,14 +3,11 @@ package com.acmutd.hackutd;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -21,7 +18,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends Activity {
 
@@ -37,14 +35,36 @@ public class LoginActivity extends Activity {
     public void login(View V) {
         String email = ((EditText) findViewById(R.id.email)).getText().toString();
         String password = ((EditText) findViewById(R.id.password)).getText().toString();
+        boolean emailError = false;
+        boolean passError = false;
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, Helpers.host + "/api/users", null, new Response.Listener<JSONObject>() {
+        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            findViewById(R.id.emailError).setVisibility(View.INVISIBLE);
+        } else {
+            findViewById(R.id.emailError).setVisibility(View.VISIBLE);
+            emailError = true;
+        }
+
+        if (password.length() > 0) {
+            findViewById(R.id.passwordError).setVisibility(View.INVISIBLE);
+        } else {
+            findViewById(R.id.passwordError).setVisibility(View.VISIBLE);
+            passError = true;
+        }
+
+        if (emailError || passError) return;
+
+        Map<String, String> params = new HashMap<>();
+        params.put("email", email);
+        params.put("password", password);
+
+        MyJSONObjectRequest request = new MyJSONObjectRequest(Request.Method.POST, Helpers.host + "/api/users/login", params, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     if (response.has("error") && !response.getString("error").equals("null")) {
                         final AlertDialog dialog = new AlertDialog.Builder(superThis)
-                                .setTitle("User Error")
+                                .setTitle("Error")
                                 .setMessage(response.getString("error"))
                                 .create();
                         runOnUiThread(new Runnable() {
@@ -54,11 +74,11 @@ public class LoginActivity extends Activity {
                             }
                         });
                     } else {
-                        JSONArray users = response.getJSONArray("data");
+                        JSONObject user = response.getJSONObject("data");
 
                         final AlertDialog dialog = new AlertDialog.Builder(superThis)
-                                .setTitle(users.getJSONObject(0).getString("first_name") + "'s Email")
-                                .setMessage(users.getJSONObject(0).getString("email"))
+                                .setTitle("Signed In")
+                                .setMessage("Welcome, " + user.getString("first_name"))
                                 .create();
                         runOnUiThread(new Runnable() {
                             @Override
@@ -78,7 +98,7 @@ public class LoginActivity extends Activity {
             }
         });
 
-        MySingleton.getInstance(this).addToRequestQueue(request);
+        VolleySingleton.getInstance(this).addToRequestQueue(request);
     }
 
     public void question(View v) {
