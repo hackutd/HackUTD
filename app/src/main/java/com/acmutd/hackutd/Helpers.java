@@ -7,6 +7,8 @@ import android.content.Context;
  */
 public class Helpers {
 
+    public static String host = "http://40.84.186.164:4250";
+
     static float dpToPx(Context context, int dp) {
         float scale = context.getResources().getDisplayMetrics().density;
         return dp * scale + 0.5f;
