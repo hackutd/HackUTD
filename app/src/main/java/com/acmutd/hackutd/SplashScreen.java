@@ -1,9 +1,13 @@
 package com.acmutd.hackutd;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.Handler;
+import android.util.Pair;
+import android.view.View;
 import android.view.Window;
 
 
@@ -12,31 +16,26 @@ public class SplashScreen extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
-        //getActionBar().hide();
-        //Remove title bar
         setContentView(R.layout.activity_splash_screen);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_splash_screen, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        final Intent intent = new Intent(this, LoginActivity.class);
+        final View background = findViewById(R.id.background);
+        final View hack_utd_text = findViewById(R.id.hack_utd_text);
+        final View hack_utd_logo = findViewById(R.id.hack_utd_logo);
+        final SplashScreen superThis = this;
+        final Context context = this;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(superThis,
+                            Pair.create(findViewById(android.R.id.statusBarBackground), Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME),
+                            Pair.create(findViewById(R.id.splashLoginHeader), "splashLoginHeader"));
+                    startActivity(intent, options.toBundle());
+                } else {
+                    startActivity(intent);
+                }
+                superThis.finish();
+            }
+        }, 1250);
     }
 }

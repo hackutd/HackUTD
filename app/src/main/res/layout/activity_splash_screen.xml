@@ -1,7 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashScreen">
+    tools:context=".SplashScreen"
+    android:id="@+id/splashLoginHeader"
+    android:transitionName="splashLoginHeader">
 
 
     <ImageView
@@ -9,8 +11,11 @@
         android:layout_height="match_parent"
         android:id="@+id/background"
         android:src="@drawable/background2"
-        android:scaleType="fitXY"
-        android:gravity="center"/>
+        android:scaleType="centerCrop"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:transitionName="background"
+        android:alpha="1" />
 
 
     <ImageView
@@ -19,7 +24,8 @@
         android:id="@+id/hack_utd_text"
         android:src="@drawable/hackutdtext"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:transitionName="hack_utd_text" />
 
     <ImageView
         android:layout_width="150dp"
@@ -28,8 +34,7 @@
         android:src="@drawable/logo"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/hack_utd_text"
-        />
-
+        android:transitionName="hack_utd_logo" />
 
 
 </RelativeLayout>
