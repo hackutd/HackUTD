@@ -19,10 +19,17 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url  "http://dl.bintray.com/urbanairship/android"
+    }
+}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:support-v4:23.1.1'
     compile 'com.mcxiaoke.volley:library-aar:1.0.0'
+    compile 'com.urbanairship.android:urbanairship-sdk:6.4.+'
 }

@@ -1,12 +1,17 @@
 package com.acmutd.hackutd;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 
 import com.android.volley.Request;
@@ -76,16 +81,17 @@ public class LoginActivity extends Activity {
                     } else {
                         JSONObject user = response.getJSONObject("data");
 
-                        final AlertDialog dialog = new AlertDialog.Builder(superThis)
-                                .setTitle("Signed In")
-                                .setMessage("Welcome, " + user.getString("first_name"))
-                                .create();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                dialog.show();
-                            }
-                        });
+                        SharedPreferences preferences = getSharedPreferences(getString(R.string.prefs_name), 0);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("user_email", user.getString("email"));
+                        editor.putString("user_first_name", user.getString("first_name"));
+                        editor.putString("user_last_name", user.getString("last_name"));
+                        editor.commit();
+
+                        Intent intent = new Intent(superThis, MainActivity.class);
+                        intent.putExtra("user_first_name", user.getString("first_name"));
+                        startActivity(intent);
+                        superThis.finish();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

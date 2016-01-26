@@ -17,15 +17,18 @@ public class SplashScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
         final Intent intent = new Intent(this, LoginActivity.class);
         final View background = findViewById(R.id.background);
         final View hack_utd_text = findViewById(R.id.hack_utd_text);
         final View hack_utd_logo = findViewById(R.id.hack_utd_logo);
         final SplashScreen superThis = this;
         final Context context = this;
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                // CHECK IF THE STATUS BAR AND NAVIGATION BAR IS NULL //
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(superThis,
                             Pair.create(findViewById(android.R.id.statusBarBackground), Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME),

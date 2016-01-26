@@ -19,7 +19,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/imageView"
+            android:id="@+id/background"
             android:src="@drawable/background2"
             android:scaleType="centerCrop"
             android:gravity="center"
@@ -29,7 +29,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView2"
+            android:id="@+id/hack_utd_text"
             android:src="@drawable/hackutdtext"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
@@ -38,10 +38,10 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:id="@+id/imageView3"
+            android:id="@+id/hack_utd_logo"
             android:src="@drawable/logo"
             android:layout_centerHorizontal="true"
-            android:layout_above="@+id/imageView2"
+            android:layout_above="@+id/hack_utd_text"
             android:transitionName="hack_utd_logo" />
     </RelativeLayout>
 
