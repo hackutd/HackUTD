@@ -36,6 +36,6 @@ public class SplashScreen extends Activity {
                 }
                 superThis.finish();
             }
-        }, 1250);
+        }, 1500);
     }
 }
