@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="hackutd_orange">#C48028</color>
-    <color name="background">#ffffff</color>
+    <color name="hackutd_orange_dark">#B67725</color>
 </resources>

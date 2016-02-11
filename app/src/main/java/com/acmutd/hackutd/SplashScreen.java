@@ -25,20 +25,28 @@ public class SplashScreen extends Activity {
         final SplashScreen superThis = this;
         final Context context = this;
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // CHECK IF THE STATUS BAR AND NAVIGATION BAR IS NULL //
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(superThis,
-                            Pair.create(findViewById(android.R.id.statusBarBackground), Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME),
-                            Pair.create(findViewById(R.id.splashLoginHeader), "splashLoginHeader"));
-                    startActivity(intent, options.toBundle());
-                } else {
-                    startActivity(intent);
+        if (!getSharedPreferences(getString(R.string.prefs_name), MODE_PRIVATE).getString("userType", "").equals("")) {
+            Intent skipIntent = new Intent(this, MainActivity.class);
+            startActivity(skipIntent);
+            finish();
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // CHECK IF THE STATUS BAR AND NAVIGATION BAR IS NULL //
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(superThis,
+                                Pair.create(findViewById(android.R.id.statusBarBackground), Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME),
+                                Pair.create(findViewById(R.id.splashLoginHeader), "splashLoginHeader"));
+                        startActivity(intent, options.toBundle());
+                        finish();
+                    } else {
+                        startActivity(intent);
+                        finish();
+                    }
+                    superThis.finish();
                 }
-                superThis.finish();
-            }
-        }, 1500);
+            }, 1500);
+        }
     }
 }

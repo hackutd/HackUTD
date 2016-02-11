@@ -2,9 +2,9 @@
 <!-- res/values/styles.xml -->
 <resources>
     <!-- your theme inherits from the material theme -->
-    <style name="AppTheme" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:colorPrimaryDark">@color/hackutd_orange</item>
-        <item name="android:windowBackground">@color/hackutd_orange</item>
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:colorPrimary">@color/hackutd_orange</item>
+        <item name="android:colorPrimaryDark">@color/hackutd_orange_dark</item>
 
         <!--Animation-->
         <item name="android:windowActivityTransitions">true</item>

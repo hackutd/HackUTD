@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.acmutd.hackutd.LoginActivity"
-    android:background="@color/background">
+    android:background="@color/background_material_dark">
 
     <RelativeLayout
         tools:context=".SplashScreen"
@@ -45,7 +45,7 @@
             android:transitionName="hack_utd_logo" />
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="300dp"
@@ -54,66 +54,65 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin">
 
-        <EditText
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:ems="10"
-            android:id="@+id/email"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:hint="Email" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Welcome!"
+            android:id="@+id/textView2"
+            android:textSize="26sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="15dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/emailError"
-            android:text="You must enter a valid email"
-            android:textColor="#f44336"
-            android:visibility="invisible" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/password"
-            android:layout_gravity="center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="We hope you are ready for 24 hours of fun! Let&apos;s begin by selecting the type of guest you are."
+            android:id="@+id/textView"
             android:layout_marginTop="15dp"
-            android:hint="Password" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="You must enter a password"
-            android:id="@+id/passwordError"
-            android:textColor="#f44336"
-            android:visibility="invisible" />
+            android:textSize="20sp"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentLeft="true"
+            android:autoText="false" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign In"
+            android:text="Participant"
             android:id="@+id/button"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="25dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:clickable="true"
-            android:onClick="login" />
+            android:onClick="participantPress"
+            android:textSize="16sp"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="false"
+            android:layout_marginBottom="25dp" />
 
-        <TextView
-            android:layout_width="fill_parent"
+        <Button
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Where do I get these?"
-            android:id="@+id/textView"
+            android:text="Sponsor"
+            android:id="@+id/button2"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:clickable="true"
-            android:textColor="@android:color/holo_blue_light"
-            android:paddingTop="15dp"
-            android:paddingBottom="30dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:onClick="question" />
-    </LinearLayout>
+            android:onClick="sponsorPress"
+            android:textSize="16sp"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="false"
+            android:layout_marginBottom="25dp"
+            android:hapticFeedbackEnabled="false" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
